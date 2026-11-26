@@ -5,7 +5,7 @@
 <title>Portafolio de Luis</title>
 <meta name="description" content="Portafolio de Luis: sitios web para cerrajerías, perfumerías y negocios locales en Villavicencio, Colombia.">
 <meta property="og:title" content="Portafolio de Luis · Páginas web">
-<meta property="og:description" content="Sitios web para negocios locales en Villavicencio. Mira mis trabajos y escríbeme por WhatsApp.">
+<meta property="og:description" content="Páginas web, tiendas en línea y bots de WhatsApp para negocios en Villavicencio. Mira mis trabajos y escríbeme.">
 <meta property="og:image" content="https://naxson.github.io/img/vista-previa.jpg">
 <meta property="og:url" content="https://naxson.github.io/">
 <meta property="og:type" content="website">
@@ -177,6 +177,47 @@ h1 .ring{display:inline-block;animation:ring 3.2s ease-in-out infinite;transform
 footer{border-top:1px solid var(--line);padding:26px 0 calc(26px + env(safe-area-inset-bottom, 0px));font-size:14px;color:var(--faint)}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
+/* WhatsApp bot demo */
+.botstage{display:grid;place-items:center;padding:10px 0 30px}
+.botstage .rig{--bx:6deg;--by:14deg}
+.chat{position:relative;width:min(310px,78vw,calc((100vh - 150px) * 9 / 18.5));aspect-ratio:9/18.5;padding:12px 10px;border-radius:44px;background:#0a0a0c;
+  border:1px solid rgba(255,255,255,.2);box-shadow:0 1px 0 rgba(255,255,255,.2) inset,0 60px 110px -30px rgba(0,0,0,.95),0 40px 120px -40px var(--c)}
+.chat::before{content:"";position:absolute;top:22px;left:50%;width:30%;height:22px;transform:translateX(-50%);border-radius:99px;background:#000;z-index:3}
+.wa-screen{height:100%;border-radius:34px;overflow:hidden;display:flex;flex-direction:column;background:#0b141a;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wa-head{display:flex;align-items:center;gap:10px;padding:52px 14px 10px;background:#1f2c34;color:#e9edef}
+.wa-head .av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;background:#1b2536;color:#f7863a;font-weight:800;font-size:15px;border:1.5px solid #f7863a}
+.wa-head b{display:block;font-size:14.5px;line-height:1.2}
+.wa-head small{font-size:11.5px;color:#8696a0}
+.wa-body{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:12px 10px 14px;overflow:hidden;
+  background:#0b141a radial-gradient(circle at 20% 30%,rgba(255,255,255,.025) 0 2px,transparent 3px) 0 0/26px 26px}
+.msg{max-width:84%;padding:6px 9px 16px;border-radius:9px;font-size:12.6px;line-height:1.38;color:#e9edef;position:relative;white-space:pre-line}
+.msg time{position:absolute;right:8px;bottom:3px;font-size:9.5px;color:#8696a0}
+.msg.in{align-self:flex-start;background:#202c33;border-top-left-radius:2px}
+.msg.out{align-self:flex-end;background:#005c4b;border-top-right-radius:2px}
+.msg.out time::after{content:" ✓✓";color:#53bdeb}
+.msg .vid{display:grid;place-items:center;height:74px;margin:-2px -5px 6px;border-radius:6px;
+  background:linear-gradient(135deg,#3a3f47,#6b7079);font-size:22px}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:10px 12px;border-radius:9px;background:#202c33;display:none}
+.typing i{width:6px;height:6px;border-radius:50%;background:#8696a0;animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{50%{opacity:.25}}
+.wa-input{display:flex;gap:8px;align-items:center;padding:8px 10px 18px;background:#0b141a}
+.wa-input span{flex:1;padding:9px 14px;border-radius:99px;background:#202c33;color:#8696a0;font-size:12.5px}
+.wa-input i{width:36px;height:36px;border-radius:50%;background:#00a884;flex:none}
+.toast{position:absolute;right:-18%;top:16%;display:flex;gap:10px;align-items:center;padding:11px 14px;border-radius:16px;
+  background:rgba(20,24,28,.92);border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 60px -20px rgba(0,0,0,.9);font-size:13px;white-space:nowrap;
+  backdrop-filter:blur(10px);transform:translateZ(90px)}
+.toast b{display:block;font-size:13.5px}.toast span{color:var(--muted);font-size:12px}
+.toast em{font-style:normal;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--c);color:#04210f;font-weight:800}
+/* chat plays step by step when JS runs; without JS everything is shown */
+.play .msg,.play .toast{display:none}
+.play .msg.on{display:block;animation:pop .35s ease both}
+.play .toast.on{display:flex;animation:popz .45s ease both}
+.play .typing.on{display:flex}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.96)}}
+@keyframes popz{from{opacity:0;transform:translateZ(90px) translateY(12px)}}
+@media (max-width:640px){.toast{right:-4%;top:auto;bottom:6%}}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
@@ -194,6 +235,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <a href="#cerrajeria" style="--c:#ff2b3a" aria-label="Cerrajería Villavicencio">02</a>
         <a href="#naranjo" style="--c:#ff7a1a" aria-label="Cerrajería Naranjo">03</a>
         <a href="#repisa" style="--c:#e2b65f" aria-label="Perfumería La Repisa">04</a>
+        <a href="#nexus" style="--c:#f7863a" aria-label="Tienda Nexus Digita">05</a>
+        <a href="#bot" style="--c:#21c063" aria-label="Bot de WhatsApp">06</a>
       </div>
     </nav>
     <div class="pill"><a class="btn btn-wa js-wa" href="#contacto">Hablemos</a></div>
@@ -206,13 +249,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div>
         <div class="kicker"><i></i>Diseño web · Villavicencio, Meta</div>
         <h1>Páginas web que hacen <span class="ring">sonar</span> tu&nbsp;<span class="wa">WhatsApp.</span></h1>
-        <p class="lead">Diseño sitios para negocios reales: cerrajerías, perfumerías y tiendas. Se ven premium, cargan rápido y convierten cada visita en un cliente que te escribe.</p>
+        <p class="lead">Diseño sitios para negocios reales: cerrajerías, perfumerías y tiendas en línea. Se ven premium, cargan rápido y convierten cada visita en un cliente que te escribe. Y si quieres, un bot que le responde por WhatsApp.</p>
         <div class="ctas">
           <a href="#llaves" class="btn btn-line">Ver mis trabajos ↓</a>
           <a href="#contacto" class="btn btn-wa js-wa">Cotizar mi página</a>
         </div>
         <div class="stats">
-          <div><b>4</b><span>sitios publicados</span></div>
+          <div><b>5</b><span>sitios publicados</span></div>
           <div><b>24/7</b><span>tu página vendiendo</span></div>
           <div><b>100%</b><span>hechos a la medida</span></div>
         </div>
@@ -242,7 +285,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         </div></div>
       </div>
       <div class="info">
-        <div class="meta"><span class="n">01 / 04</span><span class="live"><i></i>En línea</span><span>Cerrajería automotriz</span></div>
+        <div class="meta"><span class="n">01 / 06</span><span class="live"><i></i>En línea</span><span>Cerrajería automotriz</span></div>
         <h2>Llaves con Chip <em>Villavicencio</em></h2>
         <p>Negro y azul eléctrico, con las marcas de carros pasando en movimiento, servicios con fotos y una galería de trabajos reales que le da confianza al cliente antes de escribir.</p>
         <ul class="feat"><li>Galería de trabajos reales</li><li>Opiniones de Google 4,6 ★</li><li>SEO local</li><li>“Así de fácil” en 3 pasos</li></ul>
@@ -265,7 +308,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         </div></div>
       </div>
       <div class="info">
-        <div class="meta"><span class="n">02 / 04</span><span class="live"><i></i>En línea</span><span>Cerrajero 24 horas</span></div>
+        <div class="meta"><span class="n">02 / 06</span><span class="live"><i></i>En línea</span><span>Cerrajero 24 horas</span></div>
         <h2>Cerrajería <em>Villavicencio</em></h2>
         <p>Negro y rojo con mucha fuerza: el logo como protagonista, seis servicios con fotos reales y todo pensado para que el cliente escriba o llame en segundos.</p>
         <ul class="feat"><li>6 servicios con foto</li><li>68 reseñas en Google</li><li>Preguntas frecuentes</li><li>Dirección y horario</li></ul>
@@ -288,7 +331,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         </div></div>
       </div>
       <div class="info">
-        <div class="meta"><span class="n">03 / 04</span><span class="live"><i></i>En línea</span><span>Cerrajero a domicilio</span></div>
+        <div class="meta"><span class="n">03 / 06</span><span class="live"><i></i>En línea</span><span>Cerrajero a domicilio</span></div>
         <h2>Cerrajería <em>Naranjo</em></h2>
         <p>Naranja cálido y cercano, con animaciones de entrada, un botón de WhatsApp protagonista y una sección de barrios para que la encuentren en toda la ciudad.</p>
         <ul class="feat"><li>WhatsApp con un toque</li><li>Barrios de Villavicencio</li><li>“¿Por qué elegirnos?”</li><li>Logo animado</li></ul>
@@ -311,11 +354,70 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         </div></div>
       </div>
       <div class="info">
-        <div class="meta"><span class="n">04 / 04</span><span class="live"><i></i>En línea</span><span>Tienda online</span></div>
+        <div class="meta"><span class="n">04 / 06</span><span class="live"><i></i>En línea</span><span>Tienda online</span></div>
         <h2>Perfumería <em>La Repisa</em></h2>
         <p>Azul noche y dorado para una tienda de perfumes y decants originales con envíos a toda Colombia: fotos de producto uniformes, carrusel de marcas y videos de clientes reales.</p>
         <ul class="feat"><li>Precios por tamaño: 2 · 5 · 10 · 30 ml</li><li>Búsqueda por aroma</li><li>“¿Qué es un decant?”</li><li>Videos de clientes</li></ul>
         <div class="visit"><a class="btn btn-c" href="https://larepisaperfumeria.com" target="_blank" rel="noopener">Visitar tienda ↗</a><span class="url">larepisaperfumeria.com</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="scene" id="nexus" style="--c:#f7863a" data-bg="#0b1220" data-glow="#f47b20">
+    <div class="ghost" aria-hidden="true"><span>Nexus</span></div>
+    <div class="wrap">
+      <div class="stage" data-tilt>
+        <div class="rig"><div class="float">
+          <div class="laptop">
+            <div class="lid"><div class="screen"><img src="img/real-nexus-desk.webp" alt="Página de inicio de la tienda Nexus Digita" loading="lazy" style="--dur:26s"></div></div>
+            <div class="base"></div>
+          </div>
+          <div class="phone"><div class="screen"><img src="img/real-nexus-movil.webp" alt="Tienda Nexus Digita en celular" loading="lazy"></div></div>
+        </div></div>
+      </div>
+      <div class="info">
+        <div class="meta"><span class="n">05 / 06</span><span class="live"><i></i>En línea</span><span>Tienda en línea</span></div>
+        <h2>Tienda <em>Nexus Digita</em></h2>
+        <p>Una tienda en línea completa en azul noche y naranja: productos con fotos que venden, pago contra entrega, envío gratis a toda Colombia y atención por WhatsApp a un toque.</p>
+        <ul class="feat"><li>Pago contra entrega</li><li>Envío gratis a toda Colombia</li><li>Fotos y anuncios de producto</li><li>Términos y políticas legales</li></ul>
+        <div class="visit"><a class="btn btn-c" href="https://nexusdigita.co" target="_blank" rel="noopener">Visitar tienda ↗</a><span class="url">nexusdigita.co</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="scene flip" id="bot" style="--c:#21c063" data-bg="#04140e" data-glow="#0f9d58">
+    <div class="ghost" aria-hidden="true"><span>Bot</span></div>
+    <div class="wrap">
+      <div class="stage botstage" data-tilt>
+        <div class="rig"><div class="float" id="chatdemo" style="position:relative">
+          <div class="chat" role="img" aria-label="Ejemplo de conversación con el bot de WhatsApp de Nexus Digita">
+            <div class="wa-screen">
+              <div class="wa-head"><span class="av">N</span><div><b>Nexus Digita</b><small>en línea</small></div></div>
+              <div class="wa-body">
+                <div class="msg in">Hola, vi el anuncio de la manta 🙂 ¿cuánto vale?<time>7:42 p. m.</time></div>
+                <div class="msg out"><span class="vid">▶</span>¡Hola! 😊 Qué bueno que nos escribes. Te mandé el video de la manta eléctrica 🧣🔥
+💵 1 manta: <b>$109.900</b>
+🎁 2 mantas: <b>$164.900</b>
+🚚 Envío gratis y pagas al recibir.
+¿Te separo 1 o 2? 😊<time>7:42 p. m.</time></div>
+                <div class="msg in">Las 2, una es para mi mamá ❤️<time>7:43 p. m.</time></div>
+                <div class="msg out">¡Qué regalo tan bonito! 💝 Solo necesito tu nombre, ciudad y dirección con barrio, y te las despachamos 🚚<time>7:43 p. m.</time></div>
+                <div class="typing"><i></i><i></i><i></i></div>
+              </div>
+              <div class="wa-input"><span>Mensaje</span><i></i></div>
+            </div>
+          </div>
+          <div class="toast"><em>✓</em><div><b>Pedido nuevo</b><span>2 mantas · $164.900</span></div></div>
+        </div></div>
+      </div>
+      <div class="info">
+        <div class="meta"><span class="n">06 / 06</span><span>Bot de ventas · WhatsApp</span></div>
+        <h2>Un bot que <em>vende por ti</em></h2>
+        <p>Para Nexus Digita hice un asistente de WhatsApp que atiende a cada cliente que llega del anuncio, de día o de noche: saluda, manda el video y las fotos, responde dudas, toma el pedido y avisa cuando alguien necesita hablar con una persona.</p>
+        <ul class="feat"><li>Responde 24/7 en segundos</li><li>Envía video y fotos</li><li>Toma los datos del pedido</li><li>Pasa el chat a una persona</li><li>Panel con chats y pedidos</li></ul>
+        <div class="visit"><a class="btn btn-c js-wa" data-msg="Hola Luis, vi tu portafolio y me interesa un bot de WhatsApp para mi negocio." href="#contacto">Quiero un bot así ↗</a></div>
       </div>
     </div>
   </section>
@@ -331,7 +433,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <div class="step"><b>Paso 4</b><h3>La lanzamos</h3><p>Publicada, rápida y lista para conectar con tu publicidad en redes.</p></div>
       </div>
       <div class="serv">
-        <span><b>Diseño</b> a la medida</span><span><b>Perfecta</b> en celular</span><span><b>Botón</b> de WhatsApp</span><span><b>SEO</b> local en Google</span><span><b>Rápida</b> de cargar</span><span><b>Lista</b> para Facebook e Instagram</span>
+        <span><b>Diseño</b> a la medida</span><span><b>Perfecta</b> en celular</span><span><b>Botón</b> de WhatsApp</span><span><b>SEO</b> local en Google</span><span><b>Rápida</b> de cargar</span><span><b>Lista</b> para Facebook e Instagram</span><span><b>Tiendas</b> en línea</span><span><b>Bots</b> de WhatsApp</span>
       </div>
     </div>
   </section>
@@ -359,7 +461,7 @@ const WHATSAPP = "573136253468";
 const MENSAJE  = "Hola Luis, vi tu portafolio y quiero cotizar una página web para mi negocio.";
 /* ================================================================== */
 document.querySelectorAll(".js-wa").forEach(a=>{
-  a.href = "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(MENSAJE);
+  a.href = "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(a.dataset.msg||MENSAJE);
   a.target="_blank"; a.rel="noopener";
 });
 
@@ -409,6 +511,20 @@ if(!still){
     requestAnimationFrame(loop);
   })();
 }
+// WhatsApp bot demo: messages appear one by one, then the loop restarts
+(function(){
+  const box=document.getElementById("chatdemo");
+  if(!box||matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const m=[...box.querySelectorAll(".msg")], typing=box.querySelector(".typing"), toast=box.querySelector(".toast");
+  const steps=[[0,()=>m[0]],[900,()=>typing],[3200,()=>m[1]],[5600,()=>m[2]],[6500,()=>typing],[8400,()=>m[3]],[9600,()=>toast]];
+  box.classList.add("play");
+  function run(){
+    [...m,typing,toast].forEach(e=>e.classList.remove("on"));
+    steps.forEach(([t,f])=>setTimeout(()=>{const e=f(); if(e!==typing) typing.classList.remove("on"); e.classList.add("on");},t));
+    setTimeout(run,15000);
+  }
+  run();
+})();
 </script>
 
 </html>
