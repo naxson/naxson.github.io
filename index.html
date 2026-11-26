@@ -150,6 +150,44 @@ h1 .ring{display:inline-block;animation:ring 3.2s ease-in-out infinite;transform
 .btn-c{background:var(--c);color:var(--on,#0b0b0b);box-shadow:0 12px 34px -14px var(--c)}
 .url{font-family:var(--mono);font-size:13px;color:var(--faint)}
 
+/* about me */
+.about{padding:clamp(80px,11vw,150px) 0}
+.about .wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(36px,6vw,90px);align-items:center}
+.about .stage{width:100%;max-width:400px;justify-self:center}
+.about .stage .rig{--bx:4deg;--by:12deg}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;isolation:isolate;
+  background:radial-gradient(120% 90% at 30% 20%,#2b2840,#0d0c14 70%);
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 60px 120px -40px rgba(0,0,0,.95),0 40px 140px -50px var(--wa)}
+/* the photo is shown in black and white and tinted with the page colors */
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.95)}
+.portrait::before{content:"";position:absolute;inset:0;z-index:1;mix-blend-mode:color;
+  background:linear-gradient(160deg,#5b4bd6 0%,#1b1730 55%,#0f7a43 100%)}
+.portrait::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(to top,rgba(8,8,12,.85),transparent 45%),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.35'/></svg>");
+  mix-blend-mode:normal}
+.portrait .mono{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;
+  font-size:clamp(160px,22vw,300px);letter-spacing:-.06em;line-height:1;color:rgba(245,242,236,.10)}
+.portrait figcaption{position:absolute;left:22px;right:22px;bottom:20px;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.portrait figcaption b{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:-.03em;line-height:1}
+.portrait figcaption span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.badge{position:absolute;right:-6%;top:9%;z-index:4;transform:translateZ(80px) rotate(4deg);padding:10px 14px;border-radius:14px;
+  background:var(--wa);color:#062b14;font-weight:700;font-size:13.5px;line-height:1.25;box-shadow:0 20px 40px -14px rgba(0,0,0,.8)}
+.badge small{display:block;font-weight:600;opacity:.75;font-size:11.5px}
+.about h2{font-family:var(--display);font-weight:800;font-size:clamp(40px,5.4vw,74px);line-height:.95;letter-spacing:-.045em;margin:14px 0 22px;text-wrap:balance}
+.about h2 em{font-style:normal;color:var(--wa)}
+.about p{color:var(--muted);max-width:34em}
+.about p + p{margin-top:14px}
+.about p b{color:var(--ink);font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:30px 0 26px}
+.facts div{padding:16px 16px 14px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.035)}
+.facts b{display:block;font-family:var(--display);font-weight:700;font-size:28px;line-height:1;letter-spacing:-.03em}
+.facts span{font-size:13px;color:var(--faint)}
+.skills{display:flex;flex-wrap:wrap;gap:8px}
+.skills span{font-size:14px;padding:7px 13px;border-radius:10px;border:1px solid var(--line);color:var(--ink);background:rgba(255,255,255,.03)}
+@media (max-width:900px){.about .wrap{grid-template-columns:1fr}.about .stage{max-width:360px;width:86%}}
+@media (max-width:520px){.facts{grid-template-columns:1fr 1fr}.facts div:last-child{grid-column:1/-1}}
+
 /* process + services */
 .block{padding:clamp(80px,10vw,130px) 0}
 .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
@@ -418,6 +456,34 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <p>Para Nexus Digita hice un asistente de WhatsApp que atiende a cada cliente que llega del anuncio, de día o de noche: saluda, manda el video y las fotos, responde dudas, toma el pedido y avisa cuando alguien necesita hablar con una persona.</p>
         <ul class="feat"><li>Responde 24/7 en segundos</li><li>Envía video y fotos</li><li>Toma los datos del pedido</li><li>Pasa el chat a una persona</li><li>Panel con chats y pedidos</li></ul>
         <div class="visit"><a class="btn btn-c js-wa" data-msg="Hola Luis, vi tu portafolio y me interesa un bot de WhatsApp para mi negocio." href="#contacto">Quiero un bot así ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre-mi" data-bg="#0e0c16" data-glow="#5b4bd6">
+    <div class="wrap">
+      <div class="stage" data-tilt>
+        <div class="rig"><div class="float" style="position:relative">
+          <figure class="portrait">
+            <span class="mono" aria-hidden="true">L</span>
+            <figcaption><b>Luis</b><span>Villavicencio · CO</span></figcaption>
+          </figure>
+          <div class="badge">Mercadeo + diseño web<small>Unillanos · 9.º semestre</small></div>
+        </div></div>
+      </div>
+      <div>
+        <div class="eyebrow">Sobre mí</div>
+        <h2>No solo diseño páginas: <em>las pienso para vender.</em></h2>
+        <p>Soy <b>Luis</b>, tengo <b>24 años</b> y vivo en <b>Villavicencio</b>. Estudio <b>Mercadeo en la Universidad de los Llanos</b> y estoy en noveno semestre.</p>
+        <p>Por eso cada página que hago parte de una pregunta: ¿cómo hacemos que el cliente te escriba? Junto el diseño con lo que aprendo de mercadeo: a quién le hablas, qué lo convence y qué lo hace dar el clic. Trabajo con negocios de aquí, de tú a tú, y te acompaño hasta que tu página esté publicada y funcionando.</p>
+        <div class="facts">
+          <div><b>24</b><span>años</span></div>
+          <div><b>9.º</b><span>semestre de Mercadeo</span></div>
+          <div><b>Villavo</b><span>Meta, Colombia</span></div>
+        </div>
+        <div class="skills">
+          <span>Páginas web</span><span>Tiendas en línea</span><span>Bots de WhatsApp</span><span>SEO local</span><span>Contenido para redes</span><span>Anuncios en Facebook e Instagram</span><span>Fotos de producto</span>
+        </div>
       </div>
     </div>
   </section>
