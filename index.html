@@ -158,10 +158,10 @@ h1 .ring{display:inline-block;animation:ring 3.2s ease-in-out infinite;transform
 .portrait{position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;isolation:isolate;
   background:radial-gradient(120% 90% at 30% 20%,#2b2840,#0d0c14 70%);
   border:1px solid rgba(255,255,255,.16);box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 60px 120px -40px rgba(0,0,0,.95),0 40px 140px -50px var(--wa)}
-/* the photo is shown in black and white and tinted with the page colors */
-.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.95)}
-.portrait::before{content:"";position:absolute;inset:0;z-index:1;mix-blend-mode:color;
-  background:linear-gradient(160deg,#5b4bd6 0%,#1b1730 55%,#0f7a43 100%)}
+/* the photo gets a soft purple/green tint so it matches the page */
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:saturate(.9) contrast(1.05)}
+.portrait::before{content:"";position:absolute;inset:0;z-index:1;mix-blend-mode:soft-light;opacity:.55;
+  background:linear-gradient(160deg,#6d5cff 0%,transparent 50%,#1fbf6a 100%)}
 .portrait::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(to top,rgba(8,8,12,.85),transparent 45%),
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.35'/></svg>");
@@ -465,7 +465,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div class="stage" data-tilt>
         <div class="rig"><div class="float" style="position:relative">
           <figure class="portrait">
-            <span class="mono" aria-hidden="true">L</span>
+            <img src="img/luis.webp" alt="Luis, diseñador web y estudiante de Mercadeo" width="720" height="900" loading="lazy">
             <figcaption><b>Luis</b><span>Villavicencio · CO</span></figcaption>
           </figure>
           <div class="badge">Mercadeo + diseño web<small>Unillanos · 9.º semestre</small></div>
