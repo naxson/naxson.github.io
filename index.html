@@ -3,6 +3,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Portafolio de Luis</title>
+<link rel="icon" href="img/logo-luis.svg" type="image/svg+xml">
+<script>try{if(!sessionStorage.getItem("luis-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("loading")}catch(e){}</script>
 <meta name="description" content="Portafolio de Luis: sitios web para cerrajerías, perfumerías y negocios locales en Villavicencio, Colombia.">
 <meta property="og:title" content="Portafolio de Luis · Páginas web">
 <meta property="og:description" content="Páginas web, tiendas en línea y bots de WhatsApp para negocios en Villavicencio. Mira mis trabajos y escríbeme.">
@@ -188,6 +190,55 @@ h1 .ring{display:inline-block;animation:ring 3.2s ease-in-out infinite;transform
 @media (max-width:900px){.about .wrap{grid-template-columns:1fr}.about .stage{max-width:360px;width:86%}}
 @media (max-width:520px){.facts{grid-template-columns:1fr 1fr}.facts div:last-child{grid-column:1/-1}}
 
+/* intro loader: logo draws itself, then the curtain lifts (first visit only) */
+#loader{display:none}
+html.loading{overflow:hidden}
+html.loading #loader{display:grid;place-items:center;position:fixed;inset:0;z-index:100;background:#0c0b10;clip-path:inset(0 0 0 0);
+  animation:ld-out .75s cubic-bezier(.76,0,.24,1) 1.45s forwards}
+@keyframes ld-out{to{clip-path:inset(0 0 100% 0)}}
+.ld-in{display:flex;align-items:center;gap:20px}
+.ld-in svg{width:clamp(72px,12vw,104px);height:auto;overflow:visible}
+.ld-b,.ld-l{stroke-dasharray:1;stroke-dashoffset:1;animation:ld-draw .85s cubic-bezier(.65,0,.25,1) forwards}
+.ld-l{animation-delay:.3s;animation-duration:.6s}
+@keyframes ld-draw{to{stroke-dashoffset:0}}
+.ld-d{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:ld-pop .45s cubic-bezier(.34,1.8,.5,1) .9s forwards}
+@keyframes ld-pop{to{transform:scale(1)}}
+.ld-word{overflow:hidden}
+.ld-word b,.ld-word small{display:block;transform:translateY(110%);animation:ld-up .6s cubic-bezier(.2,.8,.2,1) .55s forwards}
+.ld-word b{font-family:var(--display);font-weight:800;font-size:clamp(54px,9vw,84px);letter-spacing:-.05em;line-height:.9}
+.ld-word small{font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--muted);margin-top:8px;animation-delay:.7s}
+@keyframes ld-up{to{transform:none}}
+.brand{display:flex;align-items:center;gap:9px}
+.brand img{width:26px;height:26px}
+
+/* 3D project ring */
+.ring-sec{padding:clamp(30px,5vw,70px) 0 clamp(50px,7vw,90px);overflow:hidden}
+.ring-head{text-align:center}
+.ring-head h2{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.8vw,62px);line-height:.95;letter-spacing:-.04em;margin:12px auto 10px;text-wrap:balance}
+.ring-head h2 em{font-style:normal;color:var(--wa)}
+.ring-head p{font-family:var(--mono);font-size:12.5px;color:var(--faint)}
+.ring-stage{--w:clamp(200px,24vw,330px);--r:calc(var(--w) * 2.05);position:relative;height:calc(var(--w) * .625 + 90px);
+  perspective:1500px;perspective-origin:50% 45%;display:grid;place-items:center;margin-top:24px;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.ring-stage.grab{cursor:grabbing}
+.ring-stage::after{content:"";position:absolute;left:50%;bottom:6px;width:min(900px,92vw);height:70px;transform:translateX(-50%);
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--glow) 55%,transparent),transparent);filter:blur(10px);pointer-events:none}
+.ring{position:relative;width:var(--w);aspect-ratio:16/10;transform-style:preserve-3d;
+  transform:translateZ(calc(var(--r) * .72)) rotateX(-4deg) rotateY(var(--rot,0deg));will-change:transform}
+.rc{position:absolute;inset:0;display:block;border-radius:14px;overflow:hidden;background:#111;
+  transform:rotateY(calc(var(--i) * -30deg)) translateZ(calc(var(--r) * -1));backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 30px 60px -25px rgba(0,0,0,.9),0 0 60px -22px var(--c);-webkit-user-drag:none}
+.rc img{width:100%;height:100%;object-fit:cover;object-position:50% 0;pointer-events:none}
+.rc::after{content:"";position:absolute;inset:0;background:linear-gradient(125deg,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.rc span{position:absolute;left:10px;bottom:10px;z-index:1;display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:99px;
+  background:rgba(10,10,12,.78);font-size:13px;font-weight:600;line-height:1}
+.rc span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
+.rc:focus-visible{outline:3px solid var(--c);outline-offset:-3px}
+.rc-bot{background:linear-gradient(160deg,#0b141a,#04140e)}
+.rc-bot .mini{position:absolute;inset:14px 14px 46px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px}
+.rc-bot .mini i{display:block;max-width:72%;height:16px;border-radius:7px;background:#202c33}
+.rc-bot .mini i.o{align-self:flex-end;background:#005c4b;width:62%}
+.rc-bot .mini i:nth-child(1){width:52%}.rc-bot .mini i:nth-child(3){width:38%}.rc-bot .mini i.o:nth-child(4){height:30px}
+
 /* process + services */
 .block{padding:clamp(80px,10vw,130px) 0}
 .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
@@ -262,12 +313,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 }
 </style>
 
+<div id="loader" aria-hidden="true"><div class="ld-in">
+  <svg viewBox="0 0 80 80" fill="none">
+    <defs><linearGradient id="ldg" x1="8" y1="8" x2="72" y2="72" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#8b7bff"/><stop offset="1" stop-color="#25d366"/></linearGradient></defs>
+    <path class="ld-b" pathLength="1" d="M22 8H58Q72 8 72 22V46Q72 60 58 60H36L20 72V60Q8 60 8 46V22Q8 8 22 8Z" stroke="url(#ldg)" stroke-width="6" stroke-linejoin="round"/>
+    <path class="ld-l" pathLength="1" d="M30 21V45H51" stroke="#f5f2ec" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <g class="ld-d"><circle cx="68" cy="12" r="9" fill="#0c0b10"/><circle cx="68" cy="12" r="6" fill="#25d366"/></g>
+  </svg>
+  <div class="ld-word"><b>luis</b><small>DISEÑO WEB</small></div>
+</div></div>
+
 <div class="ambient" aria-hidden="true"></div>
 
 <header class="top">
   <div class="wrap">
     <nav class="pill" aria-label="Principal">
-      <a class="brand" href="#inicio">Luis<span> · diseño web</span></a>
+      <a class="brand" href="#inicio"><img src="img/logo-luis.svg" alt="" width="26" height="26">luis<span> · diseño web</span></a>
       <div class="dots">
         <a href="#llaves" style="--c:#2f6bff" aria-label="Llaves con Chip">01</a>
         <a href="#cerrajeria" style="--c:#ff2b3a" aria-label="Cerrajería Villavicencio">02</a>
@@ -289,7 +350,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <h1>Páginas web que hacen <span class="ring">sonar</span> tu&nbsp;<span class="wa">WhatsApp.</span></h1>
         <p class="lead">Diseño sitios para negocios reales: cerrajerías, perfumerías y tiendas en línea. Se ven premium, cargan rápido y convierten cada visita en un cliente que te escribe. Y si quieres, un bot que le responde por WhatsApp.</p>
         <div class="ctas">
-          <a href="#llaves" class="btn btn-line">Ver mis trabajos ↓</a>
+          <a href="#vistazo" class="btn btn-line">Ver mis trabajos ↓</a>
           <a href="#contacto" class="btn btn-wa js-wa">Cotizar mi página</a>
         </div>
         <div class="stats">
@@ -305,6 +366,30 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
           <div class="phone"><div class="screen"><img src="img/real-naranjo-movil.webp" alt="Cerrajería Naranjo en celular"></div></div>
           <div class="phone"><div class="screen"><img src="img/real-repisa-movil.webp" alt="Perfumería La Repisa en celular"></div></div>
         </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ring-sec" id="vistazo" data-bg="#0c0b10" data-glow="#3a3550">
+    <div class="wrap ring-head">
+      <div class="eyebrow">Vistazo rápido</div>
+      <h2>6 proyectos, <em>una vuelta.</em></h2>
+      <p>Arrastra para girar · toca uno para verlo</p>
+    </div>
+    <div class="ring-stage" id="ringStage">
+      <div class="ring" id="ring">
+        <a class="rc" href="#llaves" style="--i:0;--c:#2f6bff"><img src="img/real-llaves-desk.webp" alt="" loading="lazy" draggable="false"><span>Llaves con Chip</span></a>
+        <a class="rc" href="#cerrajeria" style="--i:1;--c:#ff2b3a"><img src="img/real-cerrajeria-desk.webp" alt="" loading="lazy" draggable="false"><span>Cerrajería Villavicencio</span></a>
+        <a class="rc" href="#naranjo" style="--i:2;--c:#ff7a1a"><img src="img/real-naranjo-desk.webp" alt="" loading="lazy" draggable="false"><span>Cerrajería Naranjo</span></a>
+        <a class="rc" href="#repisa" style="--i:3;--c:#e2b65f"><img src="img/real-repisa-desk.webp" alt="" loading="lazy" draggable="false"><span>La Repisa</span></a>
+        <a class="rc" href="#nexus" style="--i:4;--c:#f7863a"><img src="img/real-nexus-desk.webp" alt="" loading="lazy" draggable="false"><span>Nexus Digita</span></a>
+        <a class="rc rc-bot" href="#bot" style="--i:5;--c:#21c063"><div class="mini"><i></i><i class="o"></i><i></i><i class="o"></i></div><span>Bot de WhatsApp</span></a>
+        <a tabindex="-1" aria-hidden="true" class="rc" href="#llaves" style="--i:6;--c:#2f6bff"><img src="img/real-llaves-desk.webp" alt="" loading="lazy" draggable="false"><span>Llaves con Chip</span></a>
+        <a tabindex="-1" aria-hidden="true" class="rc" href="#cerrajeria" style="--i:7;--c:#ff2b3a"><img src="img/real-cerrajeria-desk.webp" alt="" loading="lazy" draggable="false"><span>Cerrajería Villavicencio</span></a>
+        <a tabindex="-1" aria-hidden="true" class="rc" href="#naranjo" style="--i:8;--c:#ff7a1a"><img src="img/real-naranjo-desk.webp" alt="" loading="lazy" draggable="false"><span>Cerrajería Naranjo</span></a>
+        <a tabindex="-1" aria-hidden="true" class="rc" href="#repisa" style="--i:9;--c:#e2b65f"><img src="img/real-repisa-desk.webp" alt="" loading="lazy" draggable="false"><span>La Repisa</span></a>
+        <a tabindex="-1" aria-hidden="true" class="rc" href="#nexus" style="--i:10;--c:#f7863a"><img src="img/real-nexus-desk.webp" alt="" loading="lazy" draggable="false"><span>Nexus Digita</span></a>
+        <a tabindex="-1" aria-hidden="true" class="rc rc-bot" href="#bot" style="--i:11;--c:#21c063"><div class="mini"><i></i><i class="o"></i><i></i><i class="o"></i></div><span>Bot de WhatsApp</span></a>
       </div>
     </div>
   </section>
@@ -590,6 +675,35 @@ if(!still){
     setTimeout(run,15000);
   }
   run();
+})();
+// Intro: lift the loader once the logo has drawn (only on the first visit)
+if(document.documentElement.classList.contains("loading")){
+  setTimeout(()=>{document.documentElement.classList.remove("loading");try{sessionStorage.setItem("luis-intro","1")}catch(e){}},2250);
+}
+
+// 3D project ring: spins on its own, drag to turn it, pauses when off screen
+(function(){
+  const ring=document.getElementById("ring"), stage=document.getElementById("ringStage");
+  if(!ring) return;
+  const calm=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const AUTO=calm?0:0.08;
+  let rot=0, vel=AUTO, drag=false, lastX=0, moved=0, onScreen=false, raf=0, target=null;
+  function frame(){
+    if(target!==null){ rot+=(target-rot)*.12; if(Math.abs(target-rot)<.05){rot=target;target=null;vel=0;} }
+    else if(!drag){ rot+=vel; vel+=(AUTO-vel)*.015; }
+    ring.style.setProperty("--rot",rot.toFixed(2)+"deg");
+    raf=onScreen?requestAnimationFrame(frame):0;
+  }
+  new IntersectionObserver(([e])=>{onScreen=e.isIntersecting; if(onScreen&&!raf) raf=requestAnimationFrame(frame);}).observe(stage);
+  stage.addEventListener("pointerdown",e=>{drag=true;target=null;lastX=e.clientX;moved=0;stage.classList.add("grab")});
+  addEventListener("pointermove",e=>{ if(!drag) return; const dx=e.clientX-lastX; lastX=e.clientX; moved+=Math.abs(dx); rot-=dx*.22; vel=-dx*.22; });
+  addEventListener("pointerup",()=>{drag=false;stage.classList.remove("grab")});
+  addEventListener("pointercancel",()=>{drag=false;stage.classList.remove("grab")});
+  ring.querySelectorAll(".rc").forEach(card=>{
+    card.addEventListener("click",e=>{ if(moved>6) e.preventDefault(); });
+    // keyboard: bring the focused card to the front
+    card.addEventListener("focus",()=>{ const i=+card.style.getPropertyValue("--i"); target=Math.round((rot-i*30)/360)*360+i*30; if(!raf&&onScreen) raf=requestAnimationFrame(frame); });
+  });
 })();
 </script>
 
